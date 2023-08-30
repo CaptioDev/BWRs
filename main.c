@@ -13,6 +13,8 @@ typedef struct {
     double neutronDensity; // in neutrons/cm^3
     double flowRate; // in m^3/s
     double microSvRate; // in µSv/h
+    double coolant; // in m^3
+    double mw; // in Mw/h
 } Component;
 
 typedef struct {
@@ -24,7 +26,7 @@ typedef struct {
 // Initialize reactor with default values
 Reactor initReactor() {
     Reactor reactor;
-    reactor.fuelLoad = 0.0; // Default fuel load
+    reactor.fuelLoad = 130.0; // Default fuel load
     strcpy(reactor.fuelType, "Thorium"); // Default fuel type is Thorium
     
     // Initialize other components and properties
@@ -40,6 +42,8 @@ void adjustPropertiesForUranium(Reactor *reactor) {
         reactor->components[i].neutronDensity += 1.2e12;
         reactor->components[i].flowRate += 20.0;
         reactor->components[i].microSvRate += 3.0;
+        reactor->components[i].coolant += 7800;
+        reactor->components[i].mw *= reactor->components[i].neutronPopulation * reactor->components[i].neutronDensity * reactor->components[i].microSvRate;
     }
 }
 
@@ -50,6 +54,8 @@ void adjustPropertiesForThorium(Reactor *reactor) {
         reactor->components[i].neutronDensity += 1.0e12;
         reactor->components[i].flowRate += 15.0;
         reactor->components[i].microSvRate += 2.5;
+        reactor->components[i].coolant += 7800;
+        reactor->components[i].mw *= reactor->components[i].neutronPopulation * reactor->components[i].neutronDensity * reactor->components[i].microSvRate;
     }
 }
 
@@ -60,6 +66,8 @@ void adjustPropertiesForRadium(Reactor *reactor) {
         reactor->components[i].neutronDensity += 0.8e12;
         reactor->components[i].flowRate += 10.0;
         reactor->components[i].microSvRate += 2.0;
+        reactor->components[i].coolant += 7800;
+        reactor->components[i].mw *= reactor->components[i].neutronPopulation * reactor->components[i].neutronDensity * reactor->components[i].microSvRate;
     }
 }
 
@@ -70,6 +78,8 @@ void adjustPropertiesForLead210(Reactor *reactor) {
         reactor->components[i].neutronDensity += 1.1e12;
         reactor->components[i].flowRate += 18.0;
         reactor->components[i].microSvRate += 2.7;
+        reactor->components[i].coolant += 7800;
+        reactor->components[i].mw *= reactor->components[i].neutronPopulation * reactor->components[i].neutronDensity * reactor->components[i].microSvRate;
     }
 }
 
@@ -80,6 +90,8 @@ void adjustPropertiesForPlutonium(Reactor *reactor) {
         reactor->components[i].neutronDensity += 1.4e12;
         reactor->components[i].flowRate += 25.0;
         reactor->components[i].microSvRate += 3.5;
+        reactor->components[i].coolant += 7800;
+        reactor->components[i].mw *= reactor->components[i].neutronPopulation * reactor->components[i].neutronDensity * reactor->components[i].microSvRate;
     }
 }
 
@@ -111,6 +123,8 @@ void printComponentStatus(Component *component) {
     printf(" - Neutron Density: %.2e neutrons/cm^3\n", component->neutronDensity);
     printf(" - Flow Rate: %.2f m^3/s\n", component->flowRate);
     printf(" - Micro Sv Rate: %.2f µSv/h\n", component->microSvRate);
+    printf(" - Coolant Meters: %.2f m^3\n", component->coolant);
+    printf(" - Megawatts Output: %.2f Mw/h\n", component->mw);
 }
 
 // Function to simulate reactor behavior for a time step
@@ -158,6 +172,8 @@ int main() {
                 printf(" - Neutron Density: %.2e neutrons/cm^3\n", reactor.components[i].neutronDensity);
                 printf(" - Flow Rate: %.2f m^3/s\n", reactor.components[i].flowRate);
                 printf(" - Micro Sv Rate: %.2f µSv/h\n", reactor.components[i].microSvRate);
+                printf(" - Coolant Meters: %.2f m^3\n", reactor.components[i].coolant);
+                printf(" - Megawatts Output: %.2f Mw/h\n", reactor.components[i].mw);
             }
         } else if (strcmp(command, "help") == 0) {
             printf("Available commands:\n");
