@@ -19,7 +19,7 @@ Follow these steps to start using the BWR Reactor Simulator:
 1. **Clone or Download:** Obtain the simulator by cloning or downloading the repository to your local machine.
 2. **Compilation:** Utilize a C compiler (such as gcc) to compile the source code.
     ```bash
-    gcc main.c -o reactor_simulator -lm
+    gcc main.c -o reactor_simulator.out -lm
     ```
     (Note: The `-lm` flag is used to link the math library.)
 3. **Run the Simulator:** Execute the compiled executable to launch the simulator using:
