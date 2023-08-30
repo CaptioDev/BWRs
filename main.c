@@ -42,7 +42,7 @@ Reactor initReactor() {
         reactor.components[i].flowRate = 10.0;   // Initial flow rate in m^3/s
         reactor.components[i].microSvRate = 2.0; // Initial micro Sv rate in µSv/h
         reactor.components[i].coolant = 7800.0; // Initial coolant in m^3
-        reactor.components[i].mw = 1287.3;         // Initial megawatts output
+        reactor.components[i].mw = 128.3;         // Initial megawatts output
     }
 
     return reactor;
@@ -63,13 +63,14 @@ void scramReactor(Reactor *reactor) {
     
 // Function to adjust properties for uranium fuel
 void adjustPropertiesForUranium(Reactor *reactor) {
+    reactor->fuelLoad = 130.0; // Update fuel load for uranium
     for (int i = 0; i < NUM_COMPONENTS; i++) {
         reactor->components[i].neutronPopulation += (1.5e6 * (1 + (rand() % 3 - 1) * 0.01)); // Adding a +/- 1% variation
         reactor->components[i].neutronDensity += (1.2e12 * (1 + (rand() % 3 - 1) * 0.01));
         reactor->components[i].flowRate += (20.0 * (1 + (rand() % 3 - 1) * 0.01));
         reactor->components[i].microSvRate += (3.0 * (1 + (rand() % 3 - 1) * 0.01));
         reactor->components[i].coolant += (7800 * (1 + (rand() % 3 - 1) * 0.01));
-        reactor->components[i].mw *= reactor->components[i].temperature * reactor->components[i].flowRate;
+        reactor->components[i].mw *= reactor->components[i].temperature * reactor->components[i].microSvRate;
     }
 }
 
@@ -81,43 +82,46 @@ void adjustPropertiesForThorium(Reactor *reactor) {
         reactor->components[i].flowRate += (15.0 * (1 + (rand() % 3 - 1) * 0.01));
         reactor->components[i].microSvRate += (2.5 * (1 + (rand() % 3 - 1) * 0.01));
         reactor->components[i].coolant += (7800 * (1 + (rand() % 3 - 1) * 0.01));
-        reactor->components[i].mw *= reactor->components[i].temperature * reactor->components[i].flowRate;
+        reactor->components[i].mw *= reactor->components[i].temperature * reactor->components[i].microSvRate;
     }
 }
 
 // Function to adjust properties for lead-210 fuel
 void adjustPropertiesForLead210(Reactor *reactor) {
+     reactor->fuelLoad = 130.0; // Update fuel load for lead-210
     for (int i = 0; i < NUM_COMPONENTS; i++) {
         reactor->components[i].neutronPopulation += (1.3e6 * (1 + (rand() % 3 - 1) * 0.01));
         reactor->components[i].neutronDensity += (1.1e12 * (1 + (rand() % 3 - 1) * 0.01));
         reactor->components[i].flowRate += (18.0 * (1 + (rand() % 3 - 1) * 0.01));
         reactor->components[i].microSvRate += (2.7 * (1 + (rand() % 3 - 1) * 0.01));
         reactor->components[i].coolant += (7800 * (1 + (rand() % 3 - 1) * 0.01));
-        reactor->components[i].mw *= reactor->components[i].temperature * reactor->components[i].flowRate;
+        reactor->components[i].mw *= reactor->components[i].temperature * reactor->components[i].microSvRate;
     }
 }
 
 // Function to adjust properties for plutonium fuel
 void adjustPropertiesForPlutonium(Reactor *reactor) {
+     reactor->fuelLoad = 130.0; // Update fuel load for plutonium
     for (int i = 0; i < NUM_COMPONENTS; i++) {
         reactor->components[i].neutronPopulation += (1.8e6 * (1 + (rand() % 3 - 1) * 0.01));
         reactor->components[i].neutronDensity += (1.4e12 * (1 + (rand() % 3 - 1) * 0.01));
         reactor->components[i].flowRate += (25.0 * (1 + (rand() % 3 - 1) * 0.01));
         reactor->components[i].microSvRate += (3.5 * (1 + (rand() % 3 - 1) * 0.01));
         reactor->components[i].coolant += (7800 * (1 + (rand() % 3 - 1) * 0.01));
-        reactor->components[i].mw *= reactor->components[i].temperature * reactor->components[i].flowRate;
+        reactor->components[i].mw *= reactor->components[i].temperature * reactor->components[i].microSvRate;
     }
 }
 
 // Function to adjust properties for radium fuel
 void adjustPropertiesForRadium(Reactor *reactor) {
+     reactor->fuelLoad = 130.0; // Update fuel load for radium
     for (int i = 0; i < NUM_COMPONENTS; i++) {
         reactor->components[i].neutronPopulation += (1.0e6 * (1 + (rand() % 3 - 1) * 0.01));
         reactor->components[i].neutronDensity += (0.8e12 * (1 + (rand() % 3 - 1) * 0.01));
         reactor->components[i].flowRate += (10.0 * (1 + (rand() % 3 - 1) * 0.01));
         reactor->components[i].microSvRate += (2.0 * (1 + (rand() % 3 - 1) * 0.01));
         reactor->components[i].coolant += (7800 * (1 + (rand() % 3 - 1) * 0.01));
-        reactor->components[i].mw *= reactor->components[i].temperature * reactor->components[i].flowRate;
+        reactor->components[i].mw *= reactor->components[i].temperature * reactor->components[i].microSvRate;
     }
 }
 
@@ -167,15 +171,14 @@ void printCommonProperties(Reactor *reactor) {
     printf(" - Megawatts Output: %.2f Mw/h\n", commonComponent->mw);
 }
 
-// Function to print the ASCII drawing of the control rod positions
-void printControlRods(double controlRodPositions[NUM_CONTROL_RODS]) {
-    printf("\nControl Rod Positions:\n");
-
-    for (int i = 0; i < NUM_CONTROL_RODS; i++) {
-        int position = (int)round(controlRodPositions[i] * 100);
-        printf("| %3d ", position);
+// Function to print control rod positions
+void printControlRods(int controlRodPositions[], int numControlRods) {
+    printf("Control Rod Positions:\n");
+    printf("|");
+    for (int i = 0; i < numControlRods; i++) {
+        printf("%4d |", controlRodPositions[i]);
     }
-
+    
     printf("|\n");
     printf("|");
     for (int i = 0; i < NUM_CONTROL_RODS; i++) {
@@ -184,7 +187,7 @@ void printControlRods(double controlRodPositions[NUM_CONTROL_RODS]) {
     printf("|\n");
     printf("|");
     for (int i = 0; i < NUM_CONTROL_RODS; i++) {
-        printf("  %2d ", i + 1);
+        printf("  %4d ", i + 1);
     }
     printf("|\n");
 }
@@ -193,13 +196,13 @@ int main() {
     srand(time(NULL)); // Seed the random number generator
 
     Reactor reactor = initReactor();
-    double controlRodPositions[NUM_CONTROL_RODS];
+    int controlRodPositions[NUM_CONTROL_RODS];
 
     printf("BWR Reactor Simulator - PQAR\n");
     printf("Licenced PQAR Open-Source, read .lic file\n");
     
-     for (int i = 0; i < NUM_CONTROL_RODS; i++) {
-        controlRodPositions[i] = (rand() % 101) / 100.0; // Initialize control rod positions
+       for (int i = 0; i < NUM_CONTROL_RODS; i++) {
+        controlRodPositions[i] = rand() % 13 + 4; // Random whole numbers from 4 to 16
     }
 
     while (1) {
@@ -226,7 +229,7 @@ int main() {
             printf("Reactor Status:\n");
             printf("Fuel Load: %.2f kg\n", reactor.fuelLoad);
             printCommonProperties(&reactor);
-            printControlRods(controlRodPositions);
+            printControlRods(controlRodPositions, NUM_CONTROL_RODS);
         } else if (strcmp(command, "scram") == 0) {
             scramReactor(&reactor);
             printf("Reactor SCRAMMED.\n");
