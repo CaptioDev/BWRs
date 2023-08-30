@@ -1,6 +1,6 @@
 # BWR Reactor Simulator
 
-Welcome to the BWR Reactor Simulator, a text-based simulation tool designed to provide insights into the behavior of a Boiling Water Reactor (BWR) under various conditions and fuel types.
+Welcome to the BWR Reactor Simulator, a text-based simulation tool designed to provide insights into the behavior of a Boiling Water Reactor (BWR) under various conditions and fuel types. The compiled application is currently an .out file only for Linux, .exe will be provided soon!
 
 ## Overview
 
