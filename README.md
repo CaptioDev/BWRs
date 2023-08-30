@@ -67,4 +67,4 @@ This simulator is intended solely for educational and informational purposes. Th
 
 For any questions, feedback, or inquiries, please don't hesitate to contact us at [sapinyio@proton.me](mailto:sapinyio@proton.me).
 
-[PQAR] [2023] [pqar.net] [JENDL](https://wwwndc.jaea.go.jp/jendl/jendl.html)
+[PQAR](pqar.net) [JENDL](https://wwwndc.jaea.go.jp/jendl/jendl.html) [2023]
