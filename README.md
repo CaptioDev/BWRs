@@ -61,6 +61,7 @@ The BWR Reactor Simulator is distributed under the terms of the PQAR Open-Source
 
 ## Disclaimer
 
+This simulator is for trained professionals, PQAR, Or other authorized users ONLY. You must have some Bash knowledge and BWR knowledge to be able to successfully install, execute, and use this program.
 This simulator is intended solely for educational and informational purposes. The outcomes produced by the simulator may not accurately mirror real-world conditions. The original author, PQAR, assumes no liability for any potential damages that may arise from the use of this software.
 
 ## Contact
