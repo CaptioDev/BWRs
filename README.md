@@ -17,8 +17,28 @@ Compilation 2: You can also look at the releases to get our reactor_simulator pr
 Commands to install:
 gcc main.c -o reactor_simulator -lm
 (Note: The -lm flag is used to link the math library.)
-Run the Simulator: Execute the compiled executable to launch the simulator.
+Run the Simulator: Execute the compiled executable to launch the simulator using:
+./reactor_simulator
+Permission Error: Please refer to the Permissions section of this readme
 Interact: Follow the prompts displayed on-screen to interact with the simulator and explore its capabilities.
+
+## Permissions
+Once the simulator has been downloaded, the permissions (Linux Machines) may not allow execution of the file,
+to fix this, follow the steps listed below for Linux Machines:
+Open a terminal window.
+Navigate to the directory where your reactor_simulator executable is located using the cd command. 
+For example, if the executable is in your home directory, you can navigate there using:
+cd ~
+Once you're in the correct directory, use the ls -l command to list the files and their permissions. 
+Verify that the reactor_simulator file is listed and that it doesn't have the execute permission for the user. It might look something like this:
+-rw-r--r-- 1 user user 1234567 Aug 29 10:00 reactor_simulator
+To grant execute permission to the user, use the chmod command:
+chmod +x reactor_simulator
+This command adds the execute permission for the user.
+Verify the permissions again using ls -l. You should now see an "x" in the user's permission column, indicating execute permission:
+-rwxr--r-- 1 user user 1234567 Aug 29 10:00 reactor_simulator
+Now, you should be able to run the program using:
+./reactor_simulator
 
 ## Commands
 The following commands are available for interacting with the simulator:
