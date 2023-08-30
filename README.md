@@ -57,7 +57,7 @@ Feel free to customize and adapt the simulator to suit your specific requirement
 
 ## License
 
-The BWR Reactor Simulator is distributed under the terms of the PQAR Open-Source License. You can find detailed information about the licensing terms in the provided `LICENSE` (`.lic`) file.
+The BWR Reactor Simulator is distributed under the terms of the PQAR Open-Source License. You can find detailed information about the licensing terms in the provided `LICENSE` (`.lic`) file. PQAR is using JENDL 5 rescourses for this simulation, and PQAR Experimentation records.
 
 ## Disclaimer
 
@@ -67,4 +67,4 @@ This simulator is intended solely for educational and informational purposes. Th
 
 For any questions, feedback, or inquiries, please don't hesitate to contact us at [sapinyio@proton.me](mailto:sapinyio@proton.me).
 
-[PQAR] [2023] [pqar.net]
+[PQAR] [2023] [pqar.net] [JENDL](https://wwwndc.jaea.go.jp/jendl/jendl.html)
