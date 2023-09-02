@@ -29,9 +29,9 @@ Follow these steps to start using the BWR Reactor Simulator:
 4. **Permission Error:** Please refer to the Permissions section of this readme.
 5. **Interact:** Follow the prompts displayed on-screen to interact with the simulator and explore its capabilities.
 
-## Permissions
+## Permissions (For Linux Machines)
 
-Once the simulator has been downloaded, the permissions (Linux Machines) may not allow execution of the file. To fix this, follow the steps listed below for Linux Machines:
+Once the simulator has been downloaded, the permissions may not allow execution of the file. To fix this, follow the steps listed below for Linux Machines:
 
 1. Open a terminal window.
 2. Navigate to the directory where your `reactor_simulator` executable is located using the `cd` command.
