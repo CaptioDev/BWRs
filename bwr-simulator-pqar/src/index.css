@@ -1,0 +1,24 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+}
+
+.controls button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.status {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
